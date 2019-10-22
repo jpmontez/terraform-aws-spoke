@@ -9,7 +9,7 @@ variable "vpc_id" {
 
 variable "subnet_ids" {
   type        = "list"
-  description = "A list of subnet IDs to add the Postgres instance to. Example: ['${aws_subnet.public_a.id}', '${aws_subnet.public_b.id}']"
+  description = "A list of subnet IDs to add the Postgres instance to."
 }
 
 variable "publicly_accessible" {
@@ -26,7 +26,7 @@ variable "publicly_accessible" {
 variable "rds_class" {
   type        = "string"
   description = "The RDS class for the instance."
-  default     = "db.t2.medium"
+  default     = "db.t3.micro"
 }
 
 variable "rds_identifier" {

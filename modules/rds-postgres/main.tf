@@ -14,13 +14,13 @@ resource "aws_security_group" "postgres" {
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "Spoke Postgres"
   }
 }
@@ -30,7 +30,7 @@ resource "aws_security_group" "postgres" {
 # Source: https://www.terraform.io/docs/providers/aws/r/security_group_rule.html
 resource "aws_security_group_rule" "allow_all_postgres" {
   # Only create rule if publicly accessible
-  count       = "${var.publicly_accessible}"
+  count = "${var.publicly_accessible}"
 
   type        = "ingress"
   from_port   = 5432
@@ -47,9 +47,9 @@ resource "aws_security_group_rule" "allow_all_postgres" {
 # Source: https://www.terraform.io/docs/providers/aws/r/db_subnet_group.html
 resource "aws_db_subnet_group" "postgres" {
   name       = "postgres"
-  subnet_ids = ["${var.subnet_ids}"]
+  subnet_ids = flatten(["${var.subnet_ids}"])
 
-  tags {
+  tags = {
     Name = "Spoke Postgres"
   }
 }

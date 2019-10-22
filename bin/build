@@ -1,8 +1,10 @@
 #!/bin/bash
-# 
+#
 # Build Spoke and deploy it using Terraform.
 
 ##### Constants
+
+set -e -x
 
 TERRAFORM_PATH=$PWD
 DEPLOY_PATH="$TERRAFORM_PATH/build"
@@ -13,7 +15,7 @@ TMP_ZIP_PATH=/tmp/spoke-server-$DATE.zip
 SPOKE_PATH=
 SPOKE_DOMAIN=
 S3_BUCKET=
-AWS_REGION="us-east-1"
+AWS_REGION="us-east-2"
 AUTO_DEPLOY=0
 AUTO_YES=0
 LOG_LOCATION="$TERRAFORM_PATH/logs"
